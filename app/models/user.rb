@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_many :activities
   has_many :lazies
-  has_many :foods
+  has_and_belongs_to_many :foods
 end

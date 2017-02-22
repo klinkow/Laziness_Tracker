@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222173658) do
+ActiveRecord::Schema.define(version: 20170222223839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,14 +20,35 @@ ActiveRecord::Schema.define(version: 20170222173658) do
     t.integer "calories"
   end
 
+  create_table "activities_users", id: false, force: :cascade do |t|
+    t.integer "activity_id"
+    t.integer "user_id"
+    t.index ["activity_id"], name: "index_activities_users_on_activity_id", using: :btree
+    t.index ["user_id"], name: "index_activities_users_on_user_id", using: :btree
+  end
+
   create_table "foods", force: :cascade do |t|
     t.string  "name"
     t.integer "calories"
   end
 
+  create_table "foods_users", id: false, force: :cascade do |t|
+    t.integer "food_id"
+    t.integer "user_id"
+    t.index ["food_id"], name: "index_foods_users_on_food_id", using: :btree
+    t.index ["user_id"], name: "index_foods_users_on_user_id", using: :btree
+  end
+
   create_table "lazies", force: :cascade do |t|
     t.string  "name"
     t.integer "points"
+  end
+
+  create_table "lazies_users", id: false, force: :cascade do |t|
+    t.integer "lazy_id"
+    t.integer "user_id"
+    t.index ["lazy_id"], name: "index_lazies_users_on_lazy_id", using: :btree
+    t.index ["user_id"], name: "index_lazies_users_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

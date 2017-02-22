@@ -1,17 +1,10 @@
-<%= form_for(food) do |f| %>
-  <% if food.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(food.errors.count, "error") %> prohibited this food from being saved:</h2>
+<div class="actions">
+  <%= form_for [user, @food] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :calories %>
+  <%= f.text_field :calories %>
+  <%= f.submit %>
+</div>
 
-      <ul>
-      <% food.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
