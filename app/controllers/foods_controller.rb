@@ -23,7 +23,8 @@ class FoodsController < ApplicationController
 
   # GET /foods/1/edit
   def edit
-
+    @food = Food.find(params[:id])
+    @foods = Food.all
   end
 
   # POST /foods
@@ -48,7 +49,7 @@ class FoodsController < ApplicationController
   def update
     respond_to do |format|
       if @food.update(food_params)
-        format.html { redirect_to @food, notice: 'Food was successfully updated.' }
+        format.html { redirect_to user_foods_path(user, @food), notice: 'Food was successfully updated.' }
         format.json { render :show, status: :ok, location: @food }
       else
         format.html { render :edit }
