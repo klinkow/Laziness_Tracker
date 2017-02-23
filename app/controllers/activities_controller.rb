@@ -5,6 +5,7 @@ class ActivitiesController < ApplicationController
   # GET /activities.json
   def index
     @activities = Activity.all
+    @activity = Activity.new
   end
 
   # GET /activities/1
@@ -15,6 +16,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   def new
     @activity = Activity.new
+    @activities = Activity.all
   end
 
   # GET /activities/1/edit
@@ -24,11 +26,11 @@ class ActivitiesController < ApplicationController
   # POST /activities
   # POST /activities.json
   def create
-    @activity = Activity.new(activity_params)
+    @activity = user.activities.new(activity_params)
 
     respond_to do |format|
       if @activity.save
-        format.html { redirect_to @activity, notice: 'Activity was successfully created.' }
+        format.html { redirect_to user_activities_path(@activity, user), notice: 'Activity was successfully created.' }
         format.json { render :show, status: :created, location: @activity }
       else
         format.html { render :new }
@@ -40,9 +42,10 @@ class ActivitiesController < ApplicationController
   # PATCH/PUT /activities/1
   # PATCH/PUT /activities/1.json
   def update
+
     respond_to do |format|
       if @activity.update(activity_params)
-        format.html { redirect_to @activity, notice: 'Activity was successfully updated.' }
+        format.html { redirect_to user_activity_path(user, @activity), notice: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
       else
         format.html { render :edit }
@@ -54,9 +57,10 @@ class ActivitiesController < ApplicationController
   # DELETE /activities/1
   # DELETE /activities/1.json
   def destroy
+    @activity = Activity.find(params[:id])
     @activity.destroy
     respond_to do |format|
-      format.html { redirect_to activities_url, notice: 'Activity was successfully destroyed.' }
+      format.html { redirect_to user_activities_path(user, @activity), notice: 'Activity was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,7 +72,8 @@ class ActivitiesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+
     def activity_params
-      params.fetch(:activity, {})
+      params.require(:activity).permit(:name, :calories)
     end
 end

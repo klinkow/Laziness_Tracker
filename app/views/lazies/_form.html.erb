@@ -1,17 +1,11 @@
-<%= form_for(lazy) do |f| %>
-  <% if lazy.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(lazy.errors.count, "error") %> prohibited this lazy from being saved:</h2>
-
-      <ul>
-      <% lazy.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="actions">
+    <%= form_for [user, @lazy] do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :points %>
+    <%= f.text_field :points %>
     <%= f.submit %>
   </div>
+
 <% end %>

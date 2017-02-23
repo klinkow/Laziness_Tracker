@@ -12,9 +12,11 @@
   <tbody>
     <% @lazies.each do |lazy| %>
       <tr>
-        <td><%= link_to 'Show', lazy %></td>
-        <td><%= link_to 'Edit', edit_lazy_path(lazy) %></td>
-        <td><%= link_to 'Destroy', lazy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= lazy.name %></td>
+        <td><%= lazy.points %></td>
+        <td><%= link_to 'Show', user_lazy_path(user, lazy) %></td>
+        <td><%= link_to 'Edit', edit_user_lazy_path(user, lazy) %></td>
+        <td><%= link_to 'Destroy', user_lazy_path(user, lazy), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Lazy', new_lazy_path %>
+<%= link_to 'New Lazy', new_user_lazy_path(user) %>

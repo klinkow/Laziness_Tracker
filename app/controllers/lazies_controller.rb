@@ -24,11 +24,10 @@ class LaziesController < ApplicationController
   # POST /lazies
   # POST /lazies.json
   def create
-    @lazy = Lazy.new(lazy_params)
-
+    @lazy = user.lazies.new(lazy_params)
     respond_to do |format|
       if @lazy.save
-        format.html { redirect_to @lazy, notice: 'Lazy was successfully created.' }
+        format.html { redirect_to user_lazies_path(user, @lazy), notice: 'Lazy was successfully created.' }
         format.json { render :show, status: :created, location: @lazy }
       else
         format.html { render :new }
@@ -42,7 +41,7 @@ class LaziesController < ApplicationController
   def update
     respond_to do |format|
       if @lazy.update(lazy_params)
-        format.html { redirect_to @lazy, notice: 'Lazy was successfully updated.' }
+        format.html { redirect_to user_lazies_path(user), notice: 'Lazy was successfully updated.' }
         format.json { render :show, status: :ok, location: @lazy }
       else
         format.html { render :edit }
@@ -56,7 +55,7 @@ class LaziesController < ApplicationController
   def destroy
     @lazy.destroy
     respond_to do |format|
-      format.html { redirect_to lazies_url, notice: 'Lazy was successfully destroyed.' }
+      format.html { redirect_to user_lazies_path(user), notice: 'Lazy was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +68,6 @@ class LaziesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lazy_params
-      params.fetch(:lazy, {})
+      params.require(:lazy).permit(:name, :points)
     end
 end
