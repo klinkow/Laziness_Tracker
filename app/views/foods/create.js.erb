@@ -1,0 +1,3 @@
+$('#new_food').remove();
+$('#new_food_link').show();
+$('#add_food_javascript').after('<tr><td><%= @food.name %></td><td><%= @food.calories %></td><td><%= link_to "Edit", edit_user_food_path(user, @food) %></td><td><%= link_to "Destroy", user_food_path(user, @food), method: :delete, data: { confirm: "Are you sure?" } %></td></tr>')

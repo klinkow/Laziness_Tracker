@@ -5,3 +5,9 @@
 <%= link_to "Add New Activity", new_user_activity_path(@user) %>
 <br>
 <%= link_to "Add New Lazy Activity", new_user_lazy_path(@user) %>
+<hr>
+<%= link_to "View all activities", user_activities_path(user) %>
+<br>
+<%= link_to "View all foods", user_foods_path(user) %>
+<br>
+<%= link_to "View all lazy activities", user_lazies_path(user) %>

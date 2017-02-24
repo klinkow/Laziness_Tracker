@@ -27,14 +27,10 @@ class ActivitiesController < ApplicationController
   # POST /activities.json
   def create
     @activity = user.activities.new(activity_params)
-
+    if @activity.save
     respond_to do |format|
-      if @activity.save
         format.html { redirect_to user_activities_path(@activity, user), notice: 'Activity was successfully created.' }
-        format.json { render :show, status: :created, location: @activity }
-      else
-        format.html { render :new }
-        format.json { render json: @activity.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

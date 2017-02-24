@@ -19,9 +19,13 @@
         <td><%= link_to 'Destroy', user_lazy_path(user, lazy), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <div id='add_lazy_javascript'>
+    </div>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Lazy', new_user_lazy_path(user) %>
+<%= link_to 'New Lazy', new_user_lazy_path(user), id: "new_lazy_link", remote: true %>
+<br>
+<%= link_to "Home", root_path %>

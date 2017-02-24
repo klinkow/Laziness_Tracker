@@ -10,18 +10,20 @@
   </thead>
 
   <tbody>
-    <% @activities.each do |activity| %>
-      <tr>
-        <td><%= activity.name %></td>
-        <td><%= activity.calories %></td>
-        <td><%= link_to 'Show', user_activity_path(user, activity) %></td>
-        <td><%= link_to 'Edit', edit_user_activity_path(user, activity) %></td>
-        <td><%= link_to 'Destroy', user_activity_path(user, activity), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+
+      <% @activities.each do |activity| %>
+        <tr>
+          <td><%= activity.name %></td>
+          <td><%= activity.calories %></td>
+          <td><%= link_to 'Edit', edit_user_activity_path(user, activity) %></td>
+          <td><%= link_to 'Destroy', user_activity_path(user, activity), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+      <div id='insert'>
+      </div>
   </tbody>
 </table>
 
+<%= link_to 'New Activity', new_user_activity_path(user), id: "new_user_activity_link", remote: true %>
 <br>
-
-<%= link_to 'New Activity', new_user_activity_path(user) %>
+<%= link_to "Home", root_path %>

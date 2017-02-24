@@ -1,0 +1,3 @@
+$('#new_activity').remove();
+$('#new_user_activity_link').show();
+$('#insert').after('<tr><td><%= @activity.name %></td><td><%= @activity.calories %></td><td><%= link_to "Edit", edit_user_activity_path(user, @activity) %></td><td><%= link_to "Destroy", user_activity_path(user, @activity), method: :delete, data: { confirm: "Are you sure?" } %></td></tr>')

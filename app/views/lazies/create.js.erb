@@ -1,0 +1,3 @@
+$('#new_lazy').remove();
+$('#new_lazy_link').show();
+$('#add_lazy_javascript').after('<tr><td><%= @lazy.name %></td><td><%= @lazy.points %></td><td><%= link_to "Edit", edit_user_lazy_path(user, @lazy) %></td><td><%= link_to "Destroy", user_lazy_path(user, @lazy), method: :delete, data: { confirm: "Are you sure?" } %></td></tr>')

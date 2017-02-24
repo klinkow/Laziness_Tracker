@@ -14,14 +14,17 @@
       <tr>
         <td><%= food.name %></td>
         <td><%= food.calories %></td>
-        <td><%= link_to 'Show', user_food_path(user, food) %></td>
         <td><%= link_to 'Edit', edit_user_food_path(user, food) %></td>
         <td><%= link_to 'Destroy', user_food_path(user, food), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <div id='add_food_javascript'>
+    </div>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Food', new_user_food_path(user) %>
+<%= link_to 'New Food', new_user_food_path(user), id: 'new_food_link', remote: true %>
+<br>
+<%= link_to "Home", root_path %>

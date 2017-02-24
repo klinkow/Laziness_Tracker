@@ -1,5 +1,5 @@
 <div class="actions">
-  <%= form_for [user, @food] do |f| %>
+  <%= form_for [user, @food], remote: true do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :calories %>

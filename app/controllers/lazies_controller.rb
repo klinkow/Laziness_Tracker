@@ -26,13 +26,10 @@ class LaziesController < ApplicationController
   def create
     @lazy = user.lazies.new(lazy_params)
     respond_to do |format|
-      if @lazy.save
-        format.html { redirect_to user_lazies_path(user, @lazy), notice: 'Lazy was successfully created.' }
-        format.json { render :show, status: :created, location: @lazy }
-      else
-        format.html { render :new }
-        format.json { render json: @lazy.errors, status: :unprocessable_entity }
-      end
+    if @lazy.save
+      format.html { redirect_to user_lazies_path(user, @lazy), notice: 'Lazy was successfully created.' }
+      format.js
+    end
     end
   end
 
